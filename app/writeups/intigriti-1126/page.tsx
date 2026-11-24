@@ -24,10 +24,22 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const releaseAt = new Date("2026-11-24T00:05:00Z").getTime();
 
-const GIPHY_EMBEDS = [
-  { asset: "recon-is-your-friend.gif", id: "OIKT61NWgV9w58RyAi" },
-  { asset: "signature-window-vs-execution.gif", id: "78XCFBGOlS6keY1Bil" },
-  { asset: "brainfuck-tape-to-stack.gif", id: "7FrOU9tPbgAZtxV5mb" }
+const ARTICLE_IMAGES = [
+  {
+    asset: "recon-is-your-friend.gif",
+    src: "/images/intigriti-1126/code-hacking.gif",
+    alt: "Illustration of a hooded researcher working at a laptop with source code on screen."
+  },
+  {
+    asset: "signature-window-vs-execution.gif",
+    src: "/images/intigriti-1126/data-hex-editor.gif",
+    alt: "Hex editor displaying binary data during low-level analysis."
+  },
+  {
+    asset: "brainfuck-tape-to-stack.gif",
+    src: "/images/intigriti-1126/typing-hacking.gif",
+    alt: "Researcher typing at a workstation during a security investigation."
+  }
 ] as const;
 
 export default function Intigriti1126WriteupPage() {
@@ -40,15 +52,15 @@ export default function Intigriti1126WriteupPage() {
   const article = source
     .replace(
       "Illustrative animation of the recon trail. The screenshots requested below will show the actual challenge responses and terminal output.",
-      "GIPHY animation by [Splunk](https://giphy.com/embed/OIKT61NWgV9w58RyAi), used as a visual break in the reconnaissance section."
+      "A code-focused visual accompanying the reconnaissance and initial binary inspection."
     )
     .replace(
       "The diagram shows the difference between the RSA hash window and the pointer eventually passed to the interpreter.",
-      "GIPHY coding animation by [Pizza Ninjas](https://giphy.com/embed/78XCFBGOlS6keY1Bil), accompanying the signature analysis."
+      "A hex editor view accompanying the byte-level signature analysis."
     )
     .replace(
       "Conceptual view of the unchecked pointer moving out of the intended tape and into the stack region.",
-      "GIPHY glitch animation by [xponentialdesign](https://giphy.com/embed/7FrOU9tPbgAZtxV5mb), accompanying the memory-safety discussion."
+      "A researcher working at a terminal during the memory-safety investigation."
     );
 
   return (
@@ -74,44 +86,24 @@ export default function Intigriti1126WriteupPage() {
             remarkPlugins={[remarkGfm]}
             components={{
               img: ({ src, alt }) => {
-                const embed = GIPHY_EMBEDS.find(
+                const asset = ARTICLE_IMAGES.find(
                   (item) => typeof src === "string" && src.endsWith(item.asset)
                 );
 
-                if (embed) {
+                if (asset) {
                   return (
-                    <span
-                      className="giphy-embed-wrap"
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        maxWidth: 640,
-                        aspectRatio: "16 / 9",
-                        margin: "28px auto 14px",
-                        overflow: "hidden",
-                        border: "1px solid var(--line-strong)",
-                        borderRadius: 10,
-                        background: "#080d0f"
-                      }}
-                    >
-                      <iframe
-                        src={`https://giphy.com/embed/${embed.id}`}
-                        title={alt || "GIPHY animation"}
-                        loading="lazy"
-                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                        allowFullScreen
-                        style={{
-                          display: "block",
-                          width: "100%",
-                          height: "100%",
-                          border: 0
-                        }}
-                      />
-                    </span>
+                    <img
+                      src={asset.src}
+                      alt={asset.alt}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   );
                 }
 
-                return src ? <img src={src} alt={alt || ""} loading="lazy" /> : null;
+                return src ? (
+                  <img src={src} alt={alt || ""} loading="lazy" decoding="async" />
+                ) : null;
               }
             }}
           >
