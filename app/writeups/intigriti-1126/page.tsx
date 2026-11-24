@@ -80,9 +80,10 @@ export default function Intigriti1126WriteupPage() {
 
                 if (embed) {
                   return (
-                    <div
+                    <span
                       className="giphy-embed-wrap"
                       style={{
+                        display: "block",
                         width: "100%",
                         maxWidth: 640,
                         aspectRatio: "16 / 9",
@@ -106,7 +107,7 @@ export default function Intigriti1126WriteupPage() {
                           border: 0
                         }}
                       />
-                    </div>
+                    </span>
                   );
                 }
 
