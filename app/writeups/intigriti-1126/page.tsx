@@ -27,12 +27,12 @@ const releaseAt = new Date("2026-11-24T00:05:00Z").getTime();
 const ARTICLE_IMAGES = [
   {
     asset: "recon-is-your-friend.gif",
-    src: "https://jwgzoxisbac3ujiq.public.blob.vercel-storage.com/intigriti-1126/code-hacking.gif",
+    src: "https://jwgzoxisbac3ujiq.public.blob.vercel-storage.com/intigriti-1126/code-hacking.png",
     alt: "Illustration of a hooded researcher working at a laptop with source code on screen."
   },
   {
     asset: "signature-window-vs-execution.gif",
-    src: "https://jwgzoxisbac3ujiq.public.blob.vercel-storage.com/intigriti-1126/data-hex-editor.gif",
+    src: "https://jwgzoxisbac3ujiq.public.blob.vercel-storage.com/intigriti-1126/data-hex-editor.png",
     alt: "Hex editor displaying binary data during low-level analysis."
   },
   {
